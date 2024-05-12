@@ -194,18 +194,22 @@ save.grid(column=1,row=12,pady=20,sticky="w",padx=220,)
 #newpass.grid(column=3,row=6)
 viewst=tk.Button(text="View list of stocks",command=view,font=("Raleway",10,"normal"),bg="#E1F7F5")
 viewst.grid(column=3,row=8)
-with open ("data.json","r") as dt:
-     pas=json.load(fp=dt)["password"]
+try:
+     with open ("data.json","r") as dt:
+          pas=json.load(fp=dt)["password"]
+except:
+     pass
+finally:
     
      
-if(len(pas)>0):
-     
-     existing=pas
-     newpass=tk.Button(text="Set a new password ",font=("Raleway",10,"normal"),bg="#E1F7F5",command=newp)
-     newpass.grid(column=3,row=6)
-else:
-     newpass=tk.Button(text="Create a password",font=("Raleway",10,"normal"),bg="#E1F7F5",command=createp)
-     newpass.grid(column=3,row=6)
+     if(len(pas)>0):
+          
+          existing=pas
+          newpass=tk.Button(text="Set a new password ",font=("Raleway",10,"normal"),bg="#E1F7F5",command=newp)
+          newpass.grid(column=3,row=6)
+     else:
+          newpass=tk.Button(text="Create a password",font=("Raleway",10,"normal"),bg="#E1F7F5",command=createp)
+          newpass.grid(column=3,row=6)
 
 
 window.mainloop()
